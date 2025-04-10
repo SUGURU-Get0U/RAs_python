@@ -21,7 +21,7 @@ PlayerOption.append(playerop)
 
 BotOp = randrange(0,3)
 BotOption.append(BotOp)
-
+f
 if PlayerOption == BotOption:
     print("Both chose the same option, its a draw")
 
