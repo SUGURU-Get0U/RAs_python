@@ -1,6 +1,6 @@
 
 import random
-
+import time
 import requests
 
 # Pega todos os codigos da biblioteca
@@ -10,12 +10,6 @@ from tkinter import *
 # Lista de opcoes jogáveis
 calls = ["pedra", "papel", "tesoura"]
 
-# UI (user interface)
-tela = Tk()  # Cria um janela
-tela.title("minecraft 2")
-Game_title = Label(tela, text="Pedra Papel e Tesoura")
-    # Cria um texto inicial na tela.
-    # Precisa de 2 atributos (A janela que será exibida, um texto)
 
 # Funcao do Menu do jogo
 def game_menu():
@@ -27,22 +21,6 @@ def game_menu():
     return x
 
 
-
-
-Game_title.grid(column=0, row=0)
-# Exibe o texto usando os atributos (coluna, linha)
-# como se fosse no Excel
-
-Play_button = Button(tela, text="Play", command=game_menu())
-# Cria um botão que executa funcao game_menu
-
-Play_button.grid(column=0, row=2)
-# Posiciona o Botao recém criado
-
-game_mode = Label(tela, text= "")
-# Cria a resposta ao botão play, o texto será alterado pela funcao game_menu
-
-tela.mainloop()  # Deixa a janela rodando para sempre ate alguém fechar
 
 choice =game_menu()
 
@@ -100,9 +78,10 @@ while choice == "2":
         print(f"Rodada {turn}") # Mostra a rodada atual
         b1 = random.choice(calls) # Jogada do bot1
         b2 = random.choice(calls) # Jogada do bot2
-        print(f"A escolha do bot 1 foi: {b1}\n") # Mostra a escolha do bot1
+        print(f"A escolha do bot 1 foi: {b1}") # Mostra a escolha do bot1
         print(f"A escolha do bot 2 foi: {b2}\n") # Mostra a escolha do bot2
         verifica(b1,b2) # Chama a funcao para ver quem ganhou
+        time.sleep(5)
         turn += 1 # Passa para proxima rodada
         if turn == 5: # Ao final de 5 rodadas
             res = input("quer recomeçar em outro modo?? [s/n]: ")
