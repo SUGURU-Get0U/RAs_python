@@ -1,14 +1,12 @@
 
 import random
 import time
-import requests
 
-# Pega todos os codigos da biblioteca
-from tkinter import *
+
 
 
 # Lista de opcoes jogáveis
-calls = ["pedra", "papel", "tesoura"]
+calls = ["pedra [0] \n","papel [1]\n", "tesoura [2]"]
 
 
 # Funcao do Menu do jogo
@@ -35,10 +33,10 @@ def verifica(b1,b2):
     elif b1 == calls[0] and b2 == calls[2] \
             or b1 == calls[1] and b2 == calls[0] \
             or b1 == calls[2] and b2 == calls[1]:
-        return print("bot1")
+        return print("O player 2 venceu")
     # vitoria do b2
     else:
-        return print("bot2")
+        return print("O player 1 perdeu")
 
 
 def end_game(mode,run):
@@ -54,6 +52,7 @@ turn = 1
 # Modo de jogo Player vs Cop
 while choice == "1":
     print(f"Rodada {turn}")
+    print(*calls)
     p1 = input("Faca sua escolha: ")
     cop1 = random.choice(calls)
     if p1 not in calls:
@@ -76,11 +75,11 @@ while choice == "1":
 # Modo de Jogo Cop vs Cop
 while choice == "2":
         print(f"Rodada {turn}") # Mostra a rodada atual
-        b1 = random.choice(calls) # Jogada do bot1
-        b2 = random.choice(calls) # Jogada do bot2
-        print(f"A escolha do bot 1 foi: {b1}") # Mostra a escolha do bot1
-        print(f"A escolha do bot 2 foi: {b2}\n") # Mostra a escolha do bot2
-        verifica(b1,b2) # Chama a funcao para ver quem ganhou
+        bot1 = random.choice(calls) # Jogada do bot1
+        bot2 = random.choice(calls) # Jogada do bot2
+        print(f"A escolha do bot 1 foi: {bot1}") # Mostra a escolha do bot1
+        print(f"A escolha do bot 2 foi: {bot2}\n") # Mostra a escolha do bot2
+        verifica(bot1,bot2) # Chama a funcao para ver quem ganhou
         time.sleep(5)
         turn += 1 # Passa para proxima rodada
         if turn == 5: # Ao final de 5 rodadas
@@ -96,6 +95,7 @@ while choice == "2":
 # Modo de Jogo Player vs Player
 while choice == "3":
     print(f"Rodada {turn}")
+    print(*calls)
     p1_call = input("Jogador 1 faca sua escolha: ")
     p2_call = input("Jogador 2 faca sua escolha: ")
     while p1_call not in calls or p2_call not in calls:  # Nao tem como saber quem teve o input invalido
