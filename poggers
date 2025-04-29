@@ -1,0 +1,220 @@
+import random
+import time
+
+# Lista de opcoes jogáveis (apenas as opções principais)
+options = ["pedra", "papel", "tesoura"]
+
+def agradecimento():
+    print(" OBRIGADO POR JOGAR! \n"
+          "     feito por:\n"
+          "     Daniel Jose\n"
+          "     Daniel Langner\n"
+          "     Eduardo de Oliveira\n"
+          "     Isabelle Duarte\n "
+          "         <3 ")
+
+def mostrar_placar(pontplayer1, nome_jogador1, pontplayer2, nome_jogador2):
+    print(f"\nPlacar: {nome_jogador1} {pontplayer1} x {pontplayer2} {nome_jogador2}\n")
+
+def game_menu():
+    menu_options = ["1", "2", "3"]
+    print("(1) VsCop \n(2) CopVsCop \n(3) 1v1")
+    while True:
+        choice = input("Selecione o modo de jogo: ")
+        if choice in menu_options:
+            return choice
+        else:
+            print("Opção inválida. Por favor, escolha 1, 2 ou 3.")
+
+def verifica(b1, b2):
+    if b1 == b2:
+        print("Empate!")
+        return 0
+    elif (b1 == "pedra" and b2 == "tesoura") or \
+         (b1 == "papel" and b2 == "pedra") or \
+         (b1 == "tesoura" and b2 == "papel"):
+        print("Jogador 1 venceu!")
+        return 1
+    else:
+        print("Jogador 2 venceu!")
+        return 2
+
+def continuar_jogo():
+    while True:
+        res = input("Deseja continuar a próxima rodada? [s/n]: ")
+        if res.lower() in ['s', 'sim']:
+            return True
+        elif res.lower() in ['n', 'não']:
+            return False
+        else:
+            print("Resposta inválida. Por favor, digite 's' para sim ou 'n' para não.")
+
+def perguntar_novo_modo():
+    while True:
+        res = input("Quer recomeçar em outro modo? [s/n]: ")
+        if res.lower() in ['s', 'sim']:
+            return True
+        elif res.lower() in ['n', 'não']:
+            return False
+        else:
+            print("Resposta inválida. Por favor, digite 's' para sim ou 'n' para não.")
+
+def vs_cop_game():
+    pont_player = 0
+    pont_coop = 0
+    nome_jogador = "Jogador"
+    nome_cop = "Computador"
+    turn = 1
+    while True:
+        print(f"\nRodada {turn}")
+        print("pedra [1] ", "papel [2]", "tesoura [3]")
+        p1_choice_str = input("Faça sua escolha: ")
+        if p1_choice_str == '1':
+            p1 = "pedra"
+        elif p1_choice_str == '2':
+            p1 = "papel"
+        elif p1_choice_str == '3':
+            p1 = "tesoura"
+        elif p1_choice_str.lower() == 'q':
+            mostrar_placar(pont_player, nome_jogador, pont_coop, nome_cop)
+            return None
+        else:
+            print("Input do jogador inválido. Por favor, escolha entre 1, 2 ou 3 ou 'q' para sair.")
+            continue
+
+        cop1 = random.choice(options)
+
+        print(f"A escolha do jogador foi: {p1}")
+        print(f"A escolha do computador foi: {cop1}\n")
+        resultado = verifica(p1, cop1)
+        if resultado == 1:
+            pont_player += 1
+        elif resultado == 2:
+            pont_coop += 1
+
+        mostrar_placar(pont_player, nome_jogador, pont_coop, nome_cop)
+
+        if not continuar_jogo():
+            mostrar_placar(pont_player, nome_jogador, pont_coop, nome_cop)
+            if perguntar_novo_modo():
+                return game_menu()
+            else:
+                return None
+
+        turn += 1
+
+def cop_vs_cop_game():
+    pont_bot1 = 0
+    pont_bot2 = 0
+    nome_bot1 = "Bot 1"
+    nome_bot2 = "Bot 2"
+    turn = 1
+    while True:
+        print(f"\nRodada {turn}")
+        bot1 = random.choice(options)
+        bot2 = random.choice(options)
+
+        print(f"{nome_bot1} escolheu: {bot1}")
+        print(f"{nome_bot2} escolheu: {bot2}\n")
+
+        resultado = verifica(bot1, bot2)
+        if resultado == 1:
+            pont_bot1 += 1
+        elif resultado == 2:
+            pont_bot2 += 1
+
+        mostrar_placar(pont_bot1, nome_bot1, pont_bot2, nome_bot2)
+
+        if not continuar_jogo():
+            mostrar_placar(pont_bot1, nome_bot1, pont_bot2, nome_bot2)
+            if perguntar_novo_modo():
+                return game_menu()
+            else:
+                return None
+
+        turn += 1
+
+def jogador_vs_jogador():
+    pont_player1 = 0
+    pont_player2 = 0
+    nome_jogador1 = input("Digite o nome do Jogador 1: ")
+    nome_jogador2 = input("Digite o nome do Jogador 2: ")
+    turn = 1
+    while True:
+        print(f"\nRodada {turn}")
+        print(f"{nome_jogador1}, escolha: pedra [1], papel [2], tesoura [3]")
+        p1_choice_str = input("Faça sua escolha: ")
+        if p1_choice_str == '1':
+            p1 = "pedra"
+        elif p1_choice_str == '2':
+            p1 = "papel"
+        elif p1_choice_str == '3':
+            p1 = "tesoura"
+        elif p1_choice_str.lower() == 'q':
+            mostrar_placar(pont_player1, nome_jogador1, pont_player2, nome_jogador2)
+            return None
+        else:
+            print("Input do jogador inválido. Por favor, escolha entre 1, 2 ou 3 ou 'q' para sair.")
+            continue
+
+        print(f"{nome_jogador2}, escolha: pedra [1], papel [2], tesoura [3]")
+        p2_choice_str = input("Faça sua escolha: ")
+        if p2_choice_str == '1':
+            p2 = "pedra"
+        elif p2_choice_str == '2':
+            p2 = "papel"
+        elif p2_choice_str == '3':
+            p2 = "tesoura"
+        elif p2_choice_str.lower() == 'q':
+            mostrar_placar(pont_player1, nome_jogador1, pont_player2, nome_jogador2)
+            return None
+        else:
+            print("Input do jogador inválido. Por favor, escolha entre 1, 2 ou 3 ou 'q' para sair.")
+            continue
+
+        print(f"A escolha de {nome_jogador1} foi: {p1}")
+        print(f"A escolha de {nome_jogador2} foi: {p2}\n")
+
+        resultado = verifica(p1, p2)
+        if resultado == 1:
+            pont_player1 += 1
+        elif resultado == 2:
+            pont_player2 += 1
+
+        mostrar_placar(pont_player1, nome_jogador1, pont_player2, nome_jogador2)
+
+        if not continuar_jogo():
+            mostrar_placar(pont_player1, nome_jogador1, pont_player2, nome_jogador2)
+            if perguntar_novo_modo():
+                return game_menu()
+            else:
+                return None
+
+        turn += 1
+
+
+while True:
+    game_mode = game_menu()
+    if game_mode == '1':
+        result = vs_cop_game()
+        if result == None:
+            break
+        elif isinstance(result, str) and result.isdigit() and result in ['1', '2', '3']:
+            continue
+    elif game_mode == '2':
+        result = cop_vs_cop_game()
+        if result == None:
+            break
+        elif isinstance(result, str) and result.isdigit() and result in ['1', '2', '3']:
+            continue
+    elif game_mode == '3':
+        result = jogador_vs_jogador()
+        if result == None:
+            break
+        elif isinstance(result, str) and result.isdigit() and result in ['1', '2', '3']:
+            continue
+
+    if perguntar_novo_modo() == False:
+        break
+
+agradecimento()
