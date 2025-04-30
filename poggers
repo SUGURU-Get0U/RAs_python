@@ -4,6 +4,7 @@ import time
 # Lista de opcoes jogáveis (apenas as opções principais)
 options = ["pedra", "papel", "tesoura"]
 
+# Funções para o jogo
 def agradecimento():
     print(" OBRIGADO POR JOGAR! \n"
           "     feito por:\n"
@@ -59,6 +60,7 @@ def perguntar_novo_modo():
         else:
             print("Resposta inválida. Por favor, digite 's' para sim ou 'n' para não.")
 
+# modo player vs computador
 def vs_cop_game():
     pont_player = 0
     pont_coop = 0
@@ -103,6 +105,7 @@ def vs_cop_game():
 
         turn += 1
 
+# modo computador vs computador
 def cop_vs_cop_game():
     pont_bot1 = 0
     pont_bot2 = 0
@@ -134,6 +137,7 @@ def cop_vs_cop_game():
 
         turn += 1
 
+# modo pvp
 def jogador_vs_jogador():
     pont_player1 = 0
     pont_player2 = 0
@@ -192,7 +196,7 @@ def jogador_vs_jogador():
 
         turn += 1
 
-
+# Execução do jogo
 while True:
     game_mode = game_menu()
     if game_mode == '1':
