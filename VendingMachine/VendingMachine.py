@@ -25,3 +25,14 @@ def entradaCliente(escolhaDoCliente):
         # Informar o valor a ser pago
 def valor_a_Pagar():
     pass
+
+def troco(valorProduto, valorPago):
+    notasEmoedas = [100,50,20,10,5,2]
+    troco = 0
+    for i in range(len(notasEmoedas)):
+        if notasEmoedas[i] / (valorPago - valorProduto) >= 1:
+            troco = notasEmoedas[i].value
+
+
+
+
