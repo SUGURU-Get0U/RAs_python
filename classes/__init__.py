@@ -1,0 +1,1 @@
+# Permite inportações com um ponto (.)
