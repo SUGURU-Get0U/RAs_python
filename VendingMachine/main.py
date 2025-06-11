@@ -18,8 +18,7 @@ def login():
 
         if username == adm_user and password == adm_password:
             print("Login bem-sucedido! Acesso ao modo administrador.")
-            menu_administrador()
-            break# Login bem-sucedido
+            return True
         else:
             print(f"Usuário ou senha incorretos. Tentativas restantes: {tentativas - 1 - _}")
     
@@ -64,11 +63,8 @@ def menu_principal():
         if escolha_modo == "1":
             vending_machine_app.entrada_cliente() # Chama a função principal da máquina de vendas
         elif escolha_modo == "2":
-            # Aqui você pode adicionar uma autenticação de senha para o administrador
-            login()
-            if login == True:
-             menu_administrador()
-           
+            if login():
+                menu_administrador()
         elif escolha_modo == "0":
             print("Encerrando o programa. Até logo!")
             break

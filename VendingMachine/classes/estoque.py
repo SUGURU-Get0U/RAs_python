@@ -71,3 +71,18 @@ class Estoque:
             print("Produto removido com sucesso.")
         except ValueError:
             print("Erro: entrada inválida.")
+
+
+    def obter_produto_por_id(self, id_produto):
+        for produto in self.produtos:
+            if produto.id == id_produto:
+                return produto
+        return None
+    
+    def atualizar_quantidade(self, id_produto, nova_quantidade):
+        produto = self.obter_produto_por_id(id_produto)
+        if produto:
+            produto.quantidade = nova_quantidade
+            self.salvar()
+            return True
+        return False

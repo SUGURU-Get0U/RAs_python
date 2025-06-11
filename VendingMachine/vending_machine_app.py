@@ -8,13 +8,13 @@ STOCK_STR: str = "ESTOQUE"
 # Instanciamos o Estoque para carregar os produtos do JSON
 estoque_maquina = Estoque()
 
-def imprime_item(item):
-    print(f"{item.id:<5} {item.nome:<12} {item.preco:<8.2f} {item.quantidade:<10}")
+#def imprime_item(item):
+#    print(f"{item.id:<5} {item.nome:<12} {item.preco:<8.2f} {item.quantidade:<10}")
 
 # Função para mostrar a máquina de vendas
 def mostrar_maquina():
-    print("------------------------------------------------------------------------")
-    print(f"ID   {PRODUTO_STR:<12} {PRECO_STR:<8} {STOCK_STR:<10}")
+    #print("------------------------------------------------------------------------")
+    #print(f"ID   {PRODUTO_STR:<12} {PRECO_STR:<8} {STOCK_STR:<10}")
     print("------------------------------------------------------------------------")
     estoque_maquina.listar() # Usamos o método listar do Estoque
     print("------------------------------------------------------------------------")
@@ -87,7 +87,6 @@ def entrada_cliente():
             if escolha == 0:
                 print("Saindo da máquina de vendas.")
                 break
-            
             item = estoque_maquina.obter_produto_por_id(escolha)
             if item:
                 verificar_stock_e_comprar(item)
