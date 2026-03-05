@@ -1,5 +1,5 @@
 import time
-from functions import Show_Cat 
+from functions import Show_Cat
 
 is_string = False
 
