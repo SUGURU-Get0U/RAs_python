@@ -1,0 +1,4 @@
+# duvidas
+
+## parte de triplicar
+
