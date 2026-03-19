@@ -20,7 +20,7 @@ def Approximating_Pi(limit):
 
 Start_time = time.time()
 
-pi = Approximating_Pi(100 000 000 000)
+pi = Approximating_Pi(100000000000)
 
 finalTime = time.time() - Start_time
 
